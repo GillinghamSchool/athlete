@@ -4,9 +4,10 @@
 
 	{% block content %}
 
-	    <table class="table">
-	        <thead>
+	    <table class="table table-primary table-striped">
+	        <thead class="thead-dark">
 	        <tr>
+						<th scope="col"></th>
 						{% for column in columns %}
 	            <th scope="col">{{column}}</th>
 						{% endfor %}
@@ -16,6 +17,7 @@
 
 	        {% for asset in assets %}
 	            <tr>
+									<th scope="row"><button type="button" class="btn btn-dark pull-left">Actions</button></th>
 	                <th scope="row">{{asset.AssetID}}</th>
 	                <th scroe="row">{{asset.AssetNo}}</th>
 	                <th scope="row">{{asset.AssetName}}</th>
