@@ -2,12 +2,29 @@ from flask import render_template, session
 
 from athlete import app
 from athlete.asset_handling import get_assets
+from athlete.prettify import prettify_assets_columns
+
 title = "Asset Manager"
 
 
 @app.route("/app/asset_manager")
-def asset_manager():
+def asset_manager(asset_count=25,
+                  column_list=None
+                  ):
 
+        if column_list is None:
+            column_list = ["AssetID",
+                           "AssetNo",
+                           "AssetName",
+                           "AssetSerialNumber",
+                           "DateOriginallyAdded"]
+
+        asset_list = get_assets(asset_count, column_list)
+
+        # Converts the database column names into user-friendly column names
+        column_list = prettify_assets_columns(column_list)
+
+        # The "username" showed in the navbar
         username = None if "username" not in session\
             else session["username"]
 
@@ -28,12 +45,6 @@ def asset_manager():
         alert_header = alert_settings["header"]
         # The body text of the alert
         alert_message = alert_settings["message"]
-
-        asset_count = 25
-        column_list = ["AssetID", "AssetNo", "AssetName", "AssetSerialNumber", "DateOriginallyAdded"]
-
-        asset_list = get_assets(asset_count, column_list)
-        print(asset_list)
 
         return render_template("asset_manager.html",
                                title=title,
