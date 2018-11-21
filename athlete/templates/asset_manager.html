@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+<div style="text-align:center">
+
+	{% block content %}
+
+	    <table class="table">
+	        <thead>
+	        <tr>
+						{% for column in columns %}
+	            <th scope="col">{{column}}</th>
+						{% endfor %}
+	        </tr>
+	        </thead>
+	        <tbody>
+
+	        {% for asset in assets %}
+	            <tr>
+	                <th scope="row">{{asset.AssetID}}</th>
+	                <th scroe="row">{{asset.AssetNo}}</th>
+	                <th scope="row">{{asset.AssetName}}</th>
+	                <th scope="row">{{asset.AssetSerialNumber}}</th>
+									<th scope="row">{{asset.DateOriginallyAdded}}</th>
+	            </tr>
+	        {% endfor %}
+
+	        </tbody>
+	    </table>
+
+	{% endblock content %}
+
+</div>
