@@ -1,0 +1,3 @@
+## ATHLETE | Asset Management System
+
+**FOR USE WITHIN GILLINGHAM SCHOOL ONLY**
